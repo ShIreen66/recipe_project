@@ -1,24 +1,29 @@
+// src/components/RecipeCard.jsx
 import { Link } from "react-router-dom";
 
-const RecipeCard = (props) => {
-    const { id, image, title, chef, desc } = props.recipe;
+const RecipeCard = ({ recipe }) => {
+  return (
+    <div className="border rounded-lg shadow-md p-4 w-80 bg-white flex flex-col">
+      <img
+        src={recipe.image}
+        alt={recipe.title}
+        className="rounded-lg mb-3 h-40 w-full object-cover"
+      />
+      <h3 className="text-xl font-bold text-green-600 mb-1">{recipe.title}</h3>
+      <p className="text-gray-600 text-sm mb-2">By {recipe.chef}</p>
+      <p className="text-gray-700 text-sm line-clamp-2 mb-3">{recipe.desc}</p>
 
-    return (
+      <div className="mt-auto flex items-center justify-between">
+        <span className="font-semibold text-green-700">₹{recipe.price}</span>
         <Link
-            to={`/recipes/details/${id}`}
-            className="mr-3 mb-3 block w-[23vw] shadow-lg rounded-lg overflow-hidden bg-white hover:shadow-2xl transition-shadow duration-200 border border-gray-100"
+          to={`/recipes/details/${recipe.id}`}
+          className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm"
         >
-            <img className="w-full h-[30vh] object-cover" src={image} alt="" />
-            <div className="p-4">
-                <h1 className="mt-2 text-2xl font-black text-gray-800">{title}</h1>
-                <small className="block text-red-600 text-md mb-2">{chef}</small>
-                <p className="text-gray-600">
-                    {desc.slice(0, 100)}...
-                    <small className="text-blue-500 cursor-pointer ml-1">more</small>
-                </p>
-            </div>
+          View
         </Link>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default RecipeCard;

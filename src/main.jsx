@@ -1,15 +1,21 @@
+// src/main.jsx
 import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
-import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import RecipeContext from "./context/RecipeContext.jsx";
+import "react-toastify/dist/ReactToastify.css";
+
+import RecipeProvider from "./context/RecipeContext.jsx";
+import { AuthProvider } from "./context/AuthContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-    <RecipeContext>
-        <BrowserRouter>
-            <App />
-            <ToastContainer />
-        </BrowserRouter>
-    </RecipeContext>
+  <AuthProvider>
+    <RecipeProvider>
+      <BrowserRouter>
+        <App />
+        <ToastContainer />
+      </BrowserRouter>
+    </RecipeProvider>
+  </AuthProvider>
 );

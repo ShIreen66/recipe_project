@@ -4,7 +4,7 @@ import RecipeCard from "../components/RecipeCard";
 
 const Favroite = () => {
     const { favroite } = useContext(recipecontext);
-    console.log(favroite);
+    // console.log(favroite);
     const reciperender = favroite.map((recipe) => (
         <RecipeCard key={recipe.id} recipe={recipe} />
     ));
