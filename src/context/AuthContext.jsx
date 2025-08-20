@@ -7,25 +7,34 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   // User Login
-  const loginUser = (data) => {
-    const newUser = {
-      name: data.email.split("@")[0], // username from email
-      email: data.email,
-      country: data.country,
-      address: data.address,
-      role: "user",
-    };
-    setUser(newUser);
+  const loginUser = async (data) => {
+    if (data.email && data.password) {
+      const newUser = {
+        name: data.email.split("@")[0],
+        email: data.email,
+        country: data.country,
+        address: data.address,
+        role: "user",
+      };
+      setUser(newUser);
+      return true; // ✅ success
+    }
+    return false; // ❌ failure
   };
 
   // Admin Login
-  const loginAdmin = (data) => {
-    const admin = {
-      name: "Admin",
-      email: data.email,
-      role: "admin",
-    };
-    setUser(admin);
+  const loginAdmin = async (data) => {
+    // only allow this email/password
+    if (data.email === "admin@me.com" && data.password === "admin") {
+      const admin = {
+        name: "Admin",
+        email: data.email,
+        role: "admin",
+      };
+      setUser(admin);
+      return true; // ✅ success
+    }
+    return false; // ❌ failure
   };
 
   const logout = () => setUser(null);

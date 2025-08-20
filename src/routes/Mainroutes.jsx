@@ -5,14 +5,14 @@ import Recipes from "../pages/Recipes";
 import Favroite from "../pages/Favroite";
 import About from "../pages/About";
 import Create from "../pages/Create";
-import Update from "../pages/Update";
+// import Update from "../pages/Update";
 import PageNotFound from "../pages/PageNotFound";
 import Recipe from "../pages/Recipe";
 import LoginUser from "../pages/LoginUser";
 import LoginAdmin from "../pages/LoginAdmin";
 import AdminRoute from "../components/AdminRoutes";
 
-const Mainroutes = () => {
+const MainRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -31,7 +31,7 @@ const Mainroutes = () => {
         path="/recipes/update-recipe/:id"
         element={
           <AdminRoute>
-            <Update />
+            {/* <Update /> */}
           </AdminRoute>
         }
       />
@@ -39,7 +39,7 @@ const Mainroutes = () => {
       <Route path="/favroite" element={<Favroite />} />
       <Route path="/about" element={<About />} />
 
-      {/* 👇 yeh do alag login pages */}
+      
       <Route path="/login-user" element={<LoginUser />} />
       <Route path="/login-admin" element={<LoginAdmin />} />
 
@@ -48,4 +48,4 @@ const Mainroutes = () => {
   );
 };
 
-export default Mainroutes;
+export default MainRoutes;

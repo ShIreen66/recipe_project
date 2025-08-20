@@ -5,6 +5,8 @@ import { recipecontext } from "../context/RecipeContext";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
+import { FaHeart, FaRegHeart, FaUser } from "react-icons/fa";
+import { MdDelete, MdShoppingCart } from "react-icons/md";
 
 const Recipe = () => {
   const navigate = useNavigate();
@@ -18,21 +20,21 @@ const Recipe = () => {
     defaultValues: recipe || {},
   });
 
-  // ✅ Update (Admin)
+  // ✅ Update
   const SubmitHandler = (updatedRecipe) => {
     const i = data.findIndex((r) => String(r.id) === String(id));
     const copydata = [...data];
-    copydata[i] = { 
-      ...recipe, 
-      ...updatedRecipe, 
-      price: Number(updatedRecipe.price) || 0 // 🔥 ensure price is number
+    copydata[i] = {
+      ...recipe,
+      ...updatedRecipe,
+      price: Number(updatedRecipe.price) || 0,
     };
     setdata(copydata);
     toast.success("Recipe updated!");
-    reset(copydata[i]); // reset form with updated values
+    reset(copydata[i]);
   };
 
-  // Delete (Admin)
+  // ✅ Delete
   const DeleteHandler = () => {
     const filterData = data.filter((r) => String(r.id) !== String(id));
     setdata(filterData);
@@ -40,7 +42,7 @@ const Recipe = () => {
     navigate("/recipes");
   };
 
-  // Favorite
+  // ✅ Favorite
   const FavroiteHandler = () => {
     if (!favroite.find((r) => String(r.id) === String(recipe.id))) {
       setfavroite([...favroite, recipe]);
@@ -74,36 +76,48 @@ const Recipe = () => {
   const isFav = !!favroite.find((r) => String(r.id) === String(recipe.id));
 
   return (
-    <div className="mt-8 w-full min-h-screen flex flex-col md:flex-row gap-8 items-start bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-lg shadow-lg">
+    <div className="mt-10 w-full min-h-screen flex flex-col md:flex-row gap-10 items-start bg-gradient-to-br from-green-50 via-white to-blue-50 p-8 rounded-xl shadow-xl">
+      
       {/* Left: Recipe Details */}
-      <div className="md:w-1/2 w-full flex flex-col items-center bg-white rounded-lg shadow p-8">
-        <h1 className="text-4xl font-extrabold text-green-600 mb-4 text-center">
+      <div className=" w-full bg-white/90 backdrop-blur-md rounded-xl shadow-lg p-8 flex flex-col">
+        <h1 className="text-4xl font-extrabold text-green-600 mb-6 text-center">
           {recipe.title}
         </h1>
+
         <img
-          className="h-[250px] w-full object-cover rounded-lg shadow mb-4"
+          className="h-[300px] w-full object-cover rounded-xl shadow-md mb-6"
           src={recipe.image}
           alt={recipe.title}
         />
-        <div className="flex items-center gap-2 mb-4">
-          <span className="font-semibold text-pink-500">By:</span>
-          <span className="font-bold text-gray-700">{recipe.chef}</span>
+
+        <div className="flex items-center gap-2 mb-6 text-gray-700 text-lg">
+          <FaUser className="text-green-500" />
+          <span className="font-semibold">{recipe.chef}</span>
         </div>
-        <div className="mb-4 text-gray-600 text-center">
-          <span className="font-semibold">Description:</span>
-          <p className="mt-1">{recipe.desc}</p>
+
+        <div className="mb-6">
+          <h2 className="font-semibold text-gray-700 text-lg mb-2">
+            Description:
+          </h2>
+          <p className="text-gray-600">{recipe.desc}</p>
         </div>
-        <div className="mb-4 w-full">
-          <span className="font-semibold text-gray-700">Ingredients:</span>
-          <ul className="list-disc list-inside text-gray-600 mt-1">
+
+        <div className="mb-6">
+          <h2 className="font-semibold text-gray-700 text-lg mb-2">
+            Ingredients:
+          </h2>
+          <ul className="list-disc list-inside text-gray-600 space-y-1">
             {recipe.ingr?.split(",").map((item, idx) => (
               <li key={idx}>{item.trim()}</li>
             ))}
           </ul>
         </div>
-        <div className="mb-4 w-full">
-          <span className="font-semibold text-gray-700">Instructions:</span>
-          <ol className="list-decimal list-inside text-gray-600 mt-1">
+
+        <div className="mb-6">
+          <h2 className="font-semibold text-gray-700 text-lg mb-2">
+            Instructions:
+          </h2>
+          <ol className="list-decimal list-inside text-gray-600 space-y-1">
             {recipe.inst?.split(",").map((item, idx) => (
               <li key={idx}>{item.trim()}</li>
             ))}
@@ -111,33 +125,33 @@ const Recipe = () => {
         </div>
 
         {/* Price + Actions */}
-        <div className="flex flex-col gap-4 mt-6 w-full items-center">
-          <span className="text-xl font-bold text-green-600">
+        <div className="flex flex-col gap-5 mt-auto items-center">
+          <span className="text-2xl font-bold text-green-600">
             Price: ₹{recipe.price || 100}
           </span>
 
-          <div className="flex gap-4 flex-wrap justify-center">
+          <div className="flex flex-wrap gap-4 justify-center">
             {isFav ? (
               <button
                 onClick={UnFavroiteHandler}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded shadow transition"
+                className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-lg shadow-md transition"
               >
-                Remove from Favorite
+                <FaHeart /> Remove Favorite
               </button>
             ) : (
               <button
                 onClick={FavroiteHandler}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow transition"
+                className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md transition"
               >
-                Add to Favorite
+                <FaRegHeart /> Add Favorite
               </button>
             )}
 
             <button
               onClick={OrderHandler}
-              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded shadow transition"
+              className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg shadow-md transition"
             >
-              Order Now
+              <MdShoppingCart /> Order Now
             </button>
           </div>
         </div>
@@ -147,25 +161,25 @@ const Recipe = () => {
       {user?.role === "admin" && (
         <form
           onSubmit={handleSubmit(SubmitHandler)}
-          className="md:w-1/2 w-full bg-white rounded-lg shadow p-8 text-lg flex flex-col gap-4"
+          className="md:w-1/2 w-full bg-white/90 backdrop-blur-md rounded-xl shadow-lg p-8 text-lg flex flex-col gap-5"
         >
-          <h2 className="text-2xl font-bold text-center text-green-500 mb-4">
-            Edit Recipe
+          <h2 className="text-3xl font-bold text-center text-green-500 mb-4">
+            ✏️ Edit Recipe
           </h2>
-          <input {...register("image")} type="url" placeholder="Image url" className="w-full border-b-2 p-2"/>
-          <input {...register("title")} type="text" placeholder="Title" className="w-full border-b-2 p-2"/>
-          <input {...register("chef")} type="text" placeholder="Chef" className="w-full border-b-2 p-2"/>
-          <textarea {...register("desc")} placeholder="Recipe description..." className="w-full border-b-2 p-2"/>
-          <textarea {...register("ingr")} placeholder="Ingredients, separated by comma" className="w-full border-b-2 p-2"/>
-          <textarea {...register("inst")} placeholder="Instructions, separated by comma" className="w-full border-b-2 p-2"/>
-          <input {...register("price", { valueAsNumber: true })} type="number" placeholder="Price" className="w-full border-b-2 p-2"/>
-          
-          <div className="flex gap-4 mt-4">
-            <button type="submit" className="bg-green-400 text-white px-4 py-2 rounded w-full">
+          <input {...register("image")} type="url" placeholder="Image URL" className="input-style"/>
+          <input {...register("title")} type="text" placeholder="Title" className="input-style"/>
+          <input {...register("chef")} type="text" placeholder="Chef" className="input-style"/>
+          <textarea {...register("desc")} placeholder="Recipe description..." className="input-style"/>
+          <textarea {...register("ingr")} placeholder="Ingredients, separated by comma" className="input-style"/>
+          <textarea {...register("inst")} placeholder="Instructions, separated by comma" className="input-style"/>
+          <input {...register("price", { valueAsNumber: true })} type="number" placeholder="Price" className="input-style"/>
+
+          <div className="flex gap-4 mt-6">
+            <button type="submit" className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg w-full shadow-md transition">
               Update Recipe
             </button>
-            <button type="button" onClick={DeleteHandler} className="bg-red-400 text-white px-4 py-2 rounded w-full">
-              Delete Recipe
+            <button type="button" onClick={DeleteHandler} className="flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg w-full shadow-md transition">
+              <MdDelete /> Delete
             </button>
           </div>
         </form>

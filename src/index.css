@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+/* src/index.css */
+.input-style {
+  @apply w-full border-b-2 border-gray-300 focus:border-green-500 p-2 outline-none transition bg-transparent;
+}
