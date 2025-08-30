@@ -19,10 +19,3 @@ The Recipe Project is a React-based web application that allows users to explore
 - **Favorites**: View and manage your favorite recipes.
 - **About**: Learn more about the application.
 
-## Contributing
-Contributions are welcome! Please follow these steps:
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Commit your changes (`git commit -m 'Add some feature'`).
-4. Push to the branch (`git push origin feature-branch`).
-5. Open a pull request.
