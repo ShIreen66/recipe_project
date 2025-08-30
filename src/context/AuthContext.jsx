@@ -1,4 +1,4 @@
-// src/context/AuthContext.jsx
+
 import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
@@ -17,14 +17,13 @@ export const AuthProvider = ({ children }) => {
         role: "user",
       };
       setUser(newUser);
-      return true; // ✅ success
+      return true; 
     }
-    return false; // ❌ failure
+    return false; 
   };
 
   // Admin Login
   const loginAdmin = async (data) => {
-    // only allow this email/password
     if (data.email === "admin@me.com" && data.password === "admin") {
       const admin = {
         name: "Admin",
@@ -32,9 +31,9 @@ export const AuthProvider = ({ children }) => {
         role: "admin",
       };
       setUser(admin);
-      return true; // ✅ success
+      return true; 
     }
-    return false; // ❌ failure
+    return false; 
   };
 
   const logout = () => setUser(null);

@@ -1,4 +1,3 @@
-// src/context/RecipeContext.jsx
 import { createContext, useEffect, useState } from "react";
 
 export const recipecontext = createContext(null);

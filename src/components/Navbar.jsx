@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
@@ -17,7 +16,7 @@ const Navbar = () => {
           to="/"
           className="text-2xl font-extrabold bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent tracking-tight"
         >
-          RecipeBook
+          Flavorly
         </Link>
 
         {/* Desktop Menu */}
@@ -30,8 +29,7 @@ const Navbar = () => {
           {user ? (
             <div className="flex items-center gap-4">
               <span className="text-sm text-gray-800 font-semibold">
-                {user.name}{" "}
-                <span className="text-gray-500">({user.role})</span>
+                {user.name} <span className="text-gray-500">({user.role})</span>
               </span>
               <button
                 onClick={logout}
@@ -101,8 +99,7 @@ const Navbar = () => {
           {user ? (
             <div className="flex flex-col gap-3">
               <span className="text-sm text-gray-800 font-semibold">
-                {user.name}{" "}
-                <span className="text-gray-500">({user.role})</span>
+                {user.name} <span className="text-gray-500">({user.role})</span>
               </span>
               <button
                 onClick={() => {

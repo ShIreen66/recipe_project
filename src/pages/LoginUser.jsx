@@ -111,7 +111,7 @@ const LoginUser = () => {
 
         {/* Footer */}
         <p className="text-center text-gray-600 text-sm mt-6">
-          &copy; {new Date().getFullYear()} RecipeBook
+          &copy; {new Date().getFullYear()} Flavorly
         </p>
       </div>
     </div>

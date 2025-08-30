@@ -1,4 +1,3 @@
-// src/components/RecipeCard.jsx
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaUser } from "react-icons/fa";

@@ -29,7 +29,7 @@ const About = () => {
 
         <p className="text-white text-lg leading-relaxed mb-10">
           Welcome to{" "}
-          <span className="font-semibold text-red-500">RecipeBook</span>! <br />
+          <span className="font-semibold text-red-500">Flavorly</span>! <br />
           Discover, share, and save your favorite recipes from around the
           world. Our platform is dedicated to{" "}
           <span className="font-semibold">food lovers</span> who want to explore
@@ -84,7 +84,7 @@ const About = () => {
 
         {/* Footer */}
         <p className="mt-10 text-white text-sm">
-          &copy; {new Date().getFullYear()} RecipeBook. All rights reserved.
+          &copy; {new Date().getFullYear()} Flavorly. All rights reserved.
         </p>
       </div>
     </div>
