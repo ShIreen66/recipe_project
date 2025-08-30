@@ -1,12 +1,28 @@
-# React + Vite
+# Recipe Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+The Recipe Project is a React-based web application that allows users to explore, create, and manage recipes. It includes features for user authentication, recipe management, and an admin panel for advanced functionalities.
 
-Currently, two official plugins are available:
+## Features
+- User authentication (Login for users and admins).
+- Browse and search for recipes.
+- Add recipes to favorites.
+- Create and manage recipes.
+- Responsive design for seamless usage across devices.
+- Error handling with a custom 404 page.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Usage
+- **Home Page**: Browse featured recipes.
+- **Login**: Authenticate as a user or admin.
+- **Create Recipe**: Add new recipes (admin only).
+- **Favorites**: View and manage your favorite recipes.
+- **About**: Learn more about the application.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Contributing
+Contributions are welcome! Please follow these steps:
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a pull request.
